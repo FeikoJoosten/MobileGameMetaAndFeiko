@@ -3,15 +3,17 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField]
+	LayerManager layerManagerPrefab;
+
 	LayerManager layerManager;
 
 	[SerializeField]
-	UnityEngine.UI.Image[] tempImages;
+	ImageObject[] tempImages;
 
 	void Awake()
 	{
-		layerManager = new GameObject().AddComponent<LayerManager>();
-		layerManager.name = "Layer manager";
+		layerManager = Instantiate(layerManagerPrefab);
 	}
 
 	void Start()

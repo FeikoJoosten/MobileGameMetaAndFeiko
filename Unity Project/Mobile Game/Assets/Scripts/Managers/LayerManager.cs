@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class LayerManager : MonoBehaviour
 {
+	[SerializeField]
+	LayerObject layerPrefab;
+
 	Dictionary<int, LayerObject> allLayers = new Dictionary<int, LayerObject>();
 
 	public void AddLayerObject()
 	{
-		LayerObject newObject = new GameObject().AddComponent<LayerObject>();
+		LayerObject newObject = Instantiate(layerPrefab);
 
 		newObject.name = "Layer " + allLayers.Count;
 		newObject.AssignBaseLayer(allLayers.Count);
@@ -17,7 +19,7 @@ public class LayerManager : MonoBehaviour
 		allLayers.Add(allLayers.Count, newObject);
 	}
 
-	public void AddObjectToLayer(int layer, Image objectToAdd)
+	public void AddObjectToLayer(int layer, ImageObject objectToAdd)
 	{
 		if(allLayers.Count < layer)
 		{
